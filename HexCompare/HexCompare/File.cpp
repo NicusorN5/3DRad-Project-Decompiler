@@ -6,14 +6,21 @@ File::File(char* path)
 	std::streamsize size = file.tellg();
 	file.seekg(0, std::ios::beg);
 
+	Path = new char[strlen(path)+1];
+	memset(Path, 0, strlen(path)+1);
+	memcpy(Path, path, strlen(path) + 1);
+
 	std::vector<char> buffer(size);
 	if (file.read(buffer.data(), size))
 	{
 		Buffer = (char*)buffer.data();
 		Size = buffer.size();
 	}
-	Buffer = nullptr;
-	Size = 0;
+	else
+	{
+		Buffer = nullptr;
+		Size = 0;
+	}
 }
 
 char File::operator[](int index)
@@ -24,5 +31,6 @@ char File::operator[](int index)
 
 File::~File()
 {
-	if(Buffer != nullptr)delete Buffer;
+	delete[] Path;
+	//if(Buffer != nullptr) delete Buffer;
 }

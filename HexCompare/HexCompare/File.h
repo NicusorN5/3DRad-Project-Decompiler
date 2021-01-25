@@ -1,6 +1,7 @@
 #pragma once
 #include <fstream>
 #include <vector>
+
 /*
 Encapsulates a std::ifstream's char* buffer.
 */
@@ -23,6 +24,8 @@ public:
 	size_t Size;
 
 	char operator[](int index);
+
+	char* Path;
 
 	~File();
 };

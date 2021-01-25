@@ -1,0 +1,6 @@
+C:\Users\NicusorN5\Documents\GitHub\3DRad-Project-Decompiler\HexCompare\3DRadProjectDecompiler\3DRadProjectDecompiler\bin\Debug\3DRadProjectDecompiler.exe
+C:\Users\NicusorN5\Documents\GitHub\3DRad-Project-Decompiler\HexCompare\3DRadProjectDecompiler\3DRadProjectDecompiler\bin\Debug\3DRadProjectDecompiler.pdb
+C:\Users\NicusorN5\Documents\GitHub\3DRad-Project-Decompiler\HexCompare\3DRadProjectDecompiler\3DRadProjectDecompiler\obj\Debug\3DRadProjectDecompiler.csprojAssemblyReference.cache
+C:\Users\NicusorN5\Documents\GitHub\3DRad-Project-Decompiler\HexCompare\3DRadProjectDecompiler\3DRadProjectDecompiler\obj\Debug\3DRadProjectDecompiler.csproj.CoreCompileInputs.cache
+C:\Users\NicusorN5\Documents\GitHub\3DRad-Project-Decompiler\HexCompare\3DRadProjectDecompiler\3DRadProjectDecompiler\obj\Debug\3DRadProjectDecompiler.exe
+C:\Users\NicusorN5\Documents\GitHub\3DRad-Project-Decompiler\HexCompare\3DRadProjectDecompiler\3DRadProjectDecompiler\obj\Debug\3DRadProjectDecompiler.pdb

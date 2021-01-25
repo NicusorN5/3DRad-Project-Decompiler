@@ -89,25 +89,6 @@ int main(int argc, char** argv)
                 patha = conv(opendialog.lpstrFile);
                 std::cout << "[OK]GUI selected file #1 :" << patha << " \r\n";
             }
-            switch (CommDlgExtendedError())
-            {
-            case CDERR_DIALOGFAILURE: std::cout << "CDERR_DIALOGFAILURE\n";   break;
-            case CDERR_FINDRESFAILURE: std::cout << "CDERR_FINDRESFAILURE\n";  break;
-            case CDERR_INITIALIZATION: std::cout << "CDERR_INITIALIZATION\n";  break;
-            case CDERR_LOADRESFAILURE: std::cout << "CDERR_LOADRESFAILURE\n";  break;
-            case CDERR_LOADSTRFAILURE: std::cout << "CDERR_LOADSTRFAILURE\n";  break;
-            case CDERR_LOCKRESFAILURE: std::cout << "CDERR_LOCKRESFAILURE\n";  break;
-            case CDERR_MEMALLOCFAILURE: std::cout << "CDERR_MEMALLOCFAILURE\n"; break;
-            case CDERR_MEMLOCKFAILURE: std::cout << "CDERR_MEMLOCKFAILURE\n";  break;
-            case CDERR_NOHINSTANCE: std::cout << "CDERR_NOHINSTANCE\n";     break;
-            case CDERR_NOHOOK: std::cout << "CDERR_NOHOOK\n";          break;
-            case CDERR_NOTEMPLATE: std::cout << "CDERR_NOTEMPLATE\n";      break;
-            case CDERR_STRUCTSIZE: std::cout << "CDERR_STRUCTSIZE\n";      break;
-            case FNERR_BUFFERTOOSMALL: std::cout << "FNERR_BUFFERTOOSMALL\n";  break;
-            case FNERR_INVALIDFILENAME: std::cout << "FNERR_INVALIDFILENAME\n"; break;
-            case FNERR_SUBCLASSFAILURE: std::cout << "FNERR_SUBCLASSFAILURE\n"; break;
-            default: std::cout << "Cancelled OpenFileDialog.\n";
-            }
         }
         //open dialog again
         a = false; 
@@ -124,8 +105,8 @@ int main(int argc, char** argv)
     }
     //Initialize our vars
 
-    fa = &(File(patha));
-    fb = &(File(pathb));
+    fa = new File(patha);
+    fb = new File(pathb);
     int max_size = min(fa->Size, fb->Size);
 
     //Compare the two buffers
@@ -141,15 +122,26 @@ int main(int argc, char** argv)
     }
     std::cout << "[OK] Comparing the two files. \r\n";
 
+    int fcomp = memcmp(fa->Buffer, fb->Buffer, fb->Size);
+    if (fcomp != 0)
+    {
+        std::cout << "The files are different.";
+    }
+    else
+    {
+        std::cout << "The files are the same.";
+    }
+
     for (int i = 0; i < max_size; i++)
     {
         bool ca = (*fa)[i], cb = (*fb)[i];
         if (ca != cb)
         {
-            printf_s("F: %d %02X %02X \r\n", i, ca, cb);
+            std::cout << i << ca << cb << "\r\n";
         }
     }
-    //delete[] patha;
-    //delete[] pathb;
-    std::cout << fa->Buffer << "\r\n" << fb->Buffer;
+    delete[] patha;
+    delete[] pathb;
+    delete fa;
+    delete fb;
 }
