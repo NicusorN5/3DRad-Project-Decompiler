@@ -1,5 +1,6 @@
 #pragma once
 #include <fstream>
+#include <vector>
 /*
 Encapsulates a std::ifstream's char* buffer.
 */

@@ -87,7 +87,7 @@ int main(int argc, char** argv)
             {
                 a = true;
                 patha = conv(opendialog.lpstrFile);
-                std::cout << "[OK]GUI selected file #1 :" << patha << "A \r\n";
+                std::cout << "[OK]GUI selected file #1 :" << patha << " \r\n";
             }
             switch (CommDlgExtendedError())
             {
@@ -129,20 +129,27 @@ int main(int argc, char** argv)
     int max_size = min(fa->Size, fb->Size);
 
     //Compare the two buffers
-    
+    if (fa->Buffer == nullptr)
+    {
+        std::cout << "Failed to read the first file.";
+        return 1;
+    }
+    if (fb->Buffer == nullptr)
+    {
+        std::cout << "Failed to read the second file.";
+        return 1;
+    }
     std::cout << "[OK] Comparing the two files. \r\n";
 
     for (int i = 0; i < max_size; i++)
     {
-        char ca = (*fa)[i], cb = (*fb)[i];
+        bool ca = (*fa)[i], cb = (*fb)[i];
         if (ca != cb)
         {
             printf_s("F: %d %02X %02X \r\n", i, ca, cb);
         }
     }
-    delete[] patha;
-    delete[] pathb;
+    //delete[] patha;
+    //delete[] pathb;
     std::cout << fa->Buffer << "\r\n" << fb->Buffer;
-    char test[500];
-    memset(test, 0, 500);
 }

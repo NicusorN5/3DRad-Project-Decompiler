@@ -2,20 +2,24 @@
 
 File::File(char* path)
 {
-	size_t size = 0;
-	char temp;
-	std::ifstream in(path,std::ios::in || std::ios::binary);
-	while (in >> temp) size++;
-	Size = size;
-	Buffer = new char[size];
-	in.seekg(0);
-	for (uint32_t i = 0; i < size; i++) in >> Buffer[i];
-	in.close();
+	std::ifstream file(path, std::ios::binary | std::ios::ate);
+	std::streamsize size = file.tellg();
+	file.seekg(0, std::ios::beg);
+
+	std::vector<char> buffer(size);
+	if (file.read(buffer.data(), size))
+	{
+		Buffer = (char*)buffer.data();
+		Size = buffer.size();
+	}
+	Buffer = nullptr;
+	Size = 0;
 }
 
 char File::operator[](int index)
 {
-	return Buffer[index];
+	if(Buffer != nullptr) return Buffer[index];
+	throw std::exception("Buffer = nullptr");
 }
 
 File::~File()
